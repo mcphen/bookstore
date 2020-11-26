@@ -121,8 +121,14 @@
 								<ul id="pages_prospect" class="nav flex-column collapse collapse-level-1">
 									<li class="nav-item">
 										<ul class="nav flex-column">
+											<li class="nav-item">
+                                                <a class="nav-link" href="{{ url('admin/livres') }}">Liste Livre</a>
+                                            </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Catégories</a>
+                                                <a class="nav-link" href="{{ url('admin/categorie') }}">Catégories</a>
+											</li>
+											<li class="nav-item">
+                                                <a class="nav-link" href="{{ url('admin/collection') }}">Sous-catégories</a>
                                             </li>
 
 												
@@ -250,16 +256,18 @@
     <!-- Slimscroll JavaScript -->
     <script src="{{url('/')}}/back/dist/js/jquery.slimscroll.js"></script>
 
-    <!-- Fancy Dropdown JS -->
-    <script src="{{url('/')}}/back/dist/js/dropdown-bootstrap-extended.js"></script>
+   
+   
 
-    <!-- FeatherIcons JavaScript -->
-    <script src="{{url('/')}}/back/dist/js/feather.min.js"></script>
+    @yield('dataTable')
+	
+	
+	 <!-- FeatherIcons JavaScript -->
+	 <script src="{{url('/')}}/back/dist/js/feather.min.js"></script>
 
-    
-	
-	
-	
+	  <!-- Fancy Dropdown JS -->
+	  <script src="{{url('/')}}/back/dist/js/dropdown-bootstrap-extended.js"></script>
+
     <!-- Init JavaScript -->
     <script src="{{url('/')}}/back/dist/js/init.js"></script>
 

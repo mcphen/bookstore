@@ -22,6 +22,7 @@ import Vue2Editor from 'vue2-editor'
 Vue.use(Vue2Editor)
 
 import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 
 Vue.component('v-select', vSelect);
 
@@ -29,6 +30,18 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+Vue.component('VueSlickCarousel',VueSlickCarousel)
 
 /**
  * The following block of code may be used to automatically register your
@@ -45,6 +58,11 @@ import rolecomponent from './components/Admin/RoleComponent'
 import categoriecomponent from './components/Admin/CategorieComponent'
 import collection from './components/Admin/Collection'
 import users from './components/Admin/Users'
+import action_button from './components/Admin/Livres/ActionButton'
+import add_livre from './components/Admin/Livres/AddLivre'
+import navigation from './components/Front/Navigation/Navigation'
+import banniere from './components/Front/Body/Banniere'
+import featured from './components/Front/Livres/Featured'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54,6 +72,6 @@ import users from './components/Admin/Users'
 const app = new Vue({
     el: '#app',
     components:{
-        rolecomponent,categoriecomponent, collection, users
+        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured
     }
 });

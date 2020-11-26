@@ -20,14 +20,16 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
+        "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.19.0",
         "element-ui": "^2.14.1",
         "sweetalert2": "^10.10.0",
         "vform": "^1.0.1",
         "vue-select": "^3.10.8",
+        "vue-slick-carousel": "^1.0.6",
         "vue2-editor": "^2.10.2"
     }
 }

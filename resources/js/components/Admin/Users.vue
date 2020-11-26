@@ -249,6 +249,7 @@
             },
 
             add_role () {
+                if(this.form.name!='' && this.form.firstname!='' && this.form.email!='' && this.form.password!=''){
                 Swal.fire({
                     title: "Checking...",
                     text: "Veuillez patienter!",
@@ -260,6 +261,7 @@
                 // Submit the form via a POST request*
 
                  this.form.photo = this.doc_pdf1;
+
                 axios.post('/add_users',
                     {
                         name :this.form.name, 
@@ -296,17 +298,28 @@
                         })*/
 
                     })
+                }else{
+                    Swal.fire({
+                    title: "Ooooops",
+                    text: "Veuillez remplir tous les champs!",
+                     type: 'error',
 
+                    
+                });
+                }
             },
 
             all_role(){
-                axios.get('/all_users').then(resp =>{
-                    //console.log(resp);
+                
+                    axios.get('/all_users').then(resp =>{
+                        //console.log(resp);
 
-                    this.roles = resp.data
-                }).catch(function(error){
-                    console.log(error)
-                })
+                        this.roles = resp.data
+                    }).catch(function(error){
+                        console.log(error)
+                    })
+                
+                
             },
 
             delete_role(id){

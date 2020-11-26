@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Auteur;
 use App\Categories;
 use App\Collections;
+use App\ImagesLivre;
+use App\Livres;
 use App\Roles;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    
      //=============================== CRUD TABLE ROLE =============================================//
      public function role_list(){
         $title = "Liste role ";
@@ -145,7 +150,7 @@ class AdminController extends Controller
 
        // var_dump($request); die();
         
-        User::create([
+        $user = User::create([
             'name'=>$request->name, 
             'email'=>$request->email, 
             'password'=> Hash::make($request->password),
@@ -156,6 +161,13 @@ class AdminController extends Controller
             'role_id'=>$request->role,
             
         ]);
+        $title=$request->name.' '.$request->firstname;
+
+        if($user->role_id==2){
+            Auteur::create([
+                'biographie'=>'','titre'=>'','institution'=>'','fonction'=>'','pays'=>'','slug'=>Str::slug($title),'user_id'=>$user->id,'status'=>1
+            ]);
+        }
     }
 
     public function update_users(Request $request, $id){
@@ -191,8 +203,72 @@ class AdminController extends Controller
     //=============================== CRUD TABLE USERS =============================================//
 
     public function livre_list(){
+        $livres = Livres::all();
         $title = "Liste livre ";
-        return view('backend/livres')->with(['title'=>$title]);
+        return view('backend/livres')->with(['title'=>$title, 'livres'=>$livres]);
+    }
+
+    public function livre_add(){
+        $title = "Insertion Livre";
+
+        return view('backend/addlivre')->with(['title'=>$title]);
+    }
+
+    public function add_livre(Request $request){
+        $popular = 0;
+        $publish = 0;
+        if($request->popular==True) $popular=1;
+        if($request->publish==True) $publish=1;
+
+        // change with save to fix the pbm
+        $prod = Livres::create([
+            'titre'=>$request->titre,
+            'description'=>$request->description,
+            'price'=>$request->price,
+            //'genre_id'=>$request->genre,
+            'publish'=>$publish,
+            'popular_livre'=>$popular,
+            //'views_count'=>0,
+            'slug'=> Str::slug($request->titre),
+            'statut'=>$request->statut_stock
+        ]);
+
+
+        if($request->categories){
+            foreach ($request->categories as $cat){
+                $prod->collections()->attach($cat);
+            }
+        }
+
+        if($request->couleurs){
+            foreach ($request->couleurs as $c){
+                $a = Auteur::where('user_id', $c)->first();
+                $prod->auteurs()->attach($a->id);
+            }
+        }
+        
+
+
+
+
+        $images = $request->file('images');
+        if($images){
+            foreach($images as $image){
+
+                $file_extension = $image->getClientOriginalExtension();
+                $filename = Str::random() . '.' . $file_extension;
+                //$imgPath = Storage::put('Posts/' . $filename, (string) file_get_contents($image), 'public');
+                $imgPath = Storage::disk('public')->put('Posts/' . $prod->id, $image);
+                ImagesLivre::create([
+                    'images_livres'=>$imgPath,
+                    'livre_id'=>$prod->id,
+                ]);
+            }
+
+        }
+
+
+        return "ok";
     }
 
 }

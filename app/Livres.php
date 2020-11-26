@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Livres extends Model
 {
-    //
+    public $with=['auteurs','collections'];
+    protected $fillable = [
+        'titre', 'slug', 'description','price','publish','popular_livre','statut'
+    ];
+
+    public function collections(){
+        return $this->belongsToMany(Collections::class,'collection_livre','livre_id','collection_id');
+    }
+
+    public function auteurs(){
+        return $this->belongsToMany(Auteur::class,'auteur_livre','livre_id','auteur_id');
+    }
 }

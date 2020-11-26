@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public $with = ['role'];
+    public $with = ['role', 'auteur'];
 
     /**
      * The attributes that are mass assignable.
@@ -41,5 +41,9 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo('App\Roles', 'role_id');
+    }
+
+    public function auteur(){
+        return $this->hasOne('App\Auteur','user_id');
     }
 }

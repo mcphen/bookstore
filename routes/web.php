@@ -14,13 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@index' );
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
@@ -60,6 +57,7 @@ Route::group(['middleware' => ['admin']], function () {
        //================= ROUTE Livres ========================================//
     
        Route::get('/admin/livres','AdminController@livre_list');
+       Route::get('/admin/livres/add', 'AdminController@livre_add');
        Route::post('/add_livre', 'AdminController@add_livre');
        
        Route::get('/destroy_livre/{id}', 'AdminController@delete_livre');
@@ -70,3 +68,5 @@ Route::get('/all_users', 'AdminController@all_users');
 Route::get('/all_collection', 'AdminController@all_collection');
 Route::get('/all_categorie', 'AdminController@all_categorie');
 Route::get('/all_role', 'AdminController@all_role');
+
+Route::get('/list_livre','LivresController@all_livre');
