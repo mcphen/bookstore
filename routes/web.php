@@ -70,3 +70,5 @@ Route::get('/all_categorie', 'AdminController@all_categorie');
 Route::get('/all_role', 'AdminController@all_role');
 
 Route::get('/list_livre','LivresController@all_livre');
+Route::get('/livre/{slug}', 'HomeController@single_livre');
+Route::get('/fetchLivre/{id}','LivresController@fetchLivre');

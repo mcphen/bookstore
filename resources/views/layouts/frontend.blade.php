@@ -51,7 +51,15 @@
                                 <li><a href="#">Actualités</a></li>
                                 <li><a href="blog.html">Boutique</a></li>
                                 <li><a href="contact.html">Médiathèque</a></li>
-                                <li><a href="login.html">Connexion</a></li>
+                                
+                                <!-- Authentication Links -->
+                                @guest
+                                    <li >
+                                        <a href="{{ route('login') }}">{{ __('Connexion') }}</a>
+                                    </li>
+                                    
+                                
+                                @endguest
                             </ul>
                         </div>
                     </div>
@@ -72,6 +80,40 @@
                                     
                                 
                             </nav>
+                        </div>
+
+                        <div class="header-right">
+                            
+    
+                            
+                            @auth
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-user-2" style="font-size: 2.7rem"></i>
+                                    <span>{{ Auth::user()->name }}</span>
+                                    
+                                </a>
+    
+                                <div class="dropdown-menu" >
+                                    <div class="dropdownmenu-wrapper">
+                                        <div class="dropdown-cart-header">
+                                            
+    
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                             {{ __('Logout') }}
+                                         </a>
+     
+                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                             @csrf
+                                         </form>
+                                        </div><!-- End .dropdown-cart-header -->
+                                        
+                                    </div><!-- End .dropdownmenu-wrapper -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .dropdown -->
+                            @endauth
                         </div>
                         
                     </div>
@@ -94,8 +136,8 @@
                             <i class="icon-envolope"></i>
 
                             <div class="newsletter-info">
-                                <h3>Get Special Offers and Savings</h3>
-                                <p>Get all the latest information on Events, Sales and Offers.</p>
+                                <h3>INSCRIVEZ VOUS À NOTRE NEWSLETTER</h3>
+                                <p>Recevez régulièrement la liste de nos nouveautés      </p>
                             </div>
 
                             <form action="#" method="get">
@@ -113,70 +155,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-middle">
-                    <div class="container">
-                        <div class="row row-sm">
-                            <div class="col-md-6 col-lg-3">
-                                <img src="{{url('/')}}/assets/images/logo-white.png">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipis.</p>
-                                <div class="social-link">
-                                    <h3 class="link-title">QUESTIONS?</h3>
-                                    <a href="#">1-888-123-456</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="widget">
-                                    <h3 class="widget-title">Account</h3>
-                                    <div class="widget-content row row-sm">
-                                        <ul class="col-xl-6">
-                                            <li><a href="my-account.html">My Account</a></li>
-                                            <li><a href="#">Track Your Order</a></li>
-                                            <li><a href="#">Payment Methods</a></li>
-                                            <li><a href="#">Shipping Guide</a></li>
-                                        </ul>
-                                        <ul class="col-xl-6">
-                                            <li><a href="#">FAQs</a></li>
-                                            <li><a href="#">Product Support</a></li>
-                                            <li><a href="#">Privacy</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="widget">
-                                    <h3 class="widget-title">About</h3>
-                                    <div class="widget-content row row-sm">
-                                        <ul class="col-xl-6">
-                                            <li><a href="about.html">About Porto</a></li>
-                                            <li><a href="#">Our Guarantees</a></li>
-                                            <li><a href="#">Terms And Conditions</a></li>
-                                            <li><a href="#">Privacy Policy</a></li>
-                                        </ul>
-                                        <ul class="col-xl-6">
-                                            <li><a href="#">Return Policy</a></li>
-                                            <li><a href="#">Intellectual Property Claims</a></li>
-                                            <li><a href="#">Site Map</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="widget">
-                                    <h3 class="widget-title">Features</h3>
-                                    <div class="widget-content">
-                                        <ul>
-                                            <li><a href="#">Powerful Admin Panel</a></li>
-                                            <li><a href="#">Mobile & Retina Optimized</a></li>
-                                            <li><a href="#">Super Fast Magento Theme</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="footer-bottom container">
-                    <p>Porto eCommerce. © 2020. All Rights Reserved</p>
+                    <p>Les Editions du Commerce - DEDN. © 2020. Tous droits réservés</p>
                 </div>
             </footer><!-- End .footer -->
         </div><!-- End .page-wrapper -->

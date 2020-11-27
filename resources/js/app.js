@@ -63,6 +63,7 @@ import add_livre from './components/Admin/Livres/AddLivre'
 import navigation from './components/Front/Navigation/Navigation'
 import banniere from './components/Front/Body/Banniere'
 import featured from './components/Front/Livres/Featured'
+import single_livre from './components/Front/Livres/Single'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -72,6 +73,6 @@ import featured from './components/Front/Livres/Featured'
 const app = new Vue({
     el: '#app',
     components:{
-        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured
+        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured, single_livre
     }
 });

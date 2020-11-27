@@ -271,4 +271,14 @@ class AdminController extends Controller
         return "ok";
     }
 
+    /**
+     * CRUD TABLE NEWS
+     */
+
+    public function news_list(){
+        
+        $title = "Liste news ";
+        return view('backend/news')->with(['title'=>$title]);
+    }
+
 }

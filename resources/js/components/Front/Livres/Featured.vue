@@ -1,4 +1,5 @@
 <template>
+<div :class="'featured_class'">
     <div class="container">
         <section class="product-panel">
             <div class="section-title">
@@ -9,21 +10,19 @@
                     <div class="product-default inner-quickview inner-icon center-details" v-for="livre in livres" :key="livre.id">
                         <div :class="'livre_row'">
                                 <figure>
-                                    <a href="product.html">
+                                    <a :href="'livre/'+livre.livre.slug">
                                         <img :src="livre.img.images_livres" :class="'image_livre'">
                                     </a>
-                                    <div class="label-group">
-                                        <div class="product-label label-black">New</div>
-                                    </div>
+                                    
                                     <div class="btn-icon-group">
                                         <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
                                     </div>
-                                   <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Voir plus</a> 
+                                   <a :href="'livre/'+livre.livre.slug" class="btn-quickview" title="Quick View">Voir plus</a> 
                                 </figure>
                                 <div class="product-details">
                                     
                                     <h2 class="product-title">
-                                        <a href="product.html">{{livre.livre.titre}}</a>
+                                        <a :href="'livre/'+livre.livre.slug">{{livre.livre.titre}}</a>
                                     </h2>
                                     
                                    
@@ -36,6 +35,8 @@
 
                     
     </div>
+</div>
+    
 </template>
 
 <script>
@@ -118,6 +119,10 @@ export default {
 </script>
 
 <style scoped>
+.featured_class{
+    background-color: #fbfbfb;
+    padding: 15px;
+}
 .livre_row{
     width:200px!important;
 }

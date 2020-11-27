@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+<div :class="'banniere_class'">
+    <div class="container">
                     <div class="row">
                         <div class="col-lg-4" style="padding-right:20px">
                             <form action="#" method="get" class="find-form">
@@ -89,7 +90,9 @@
 						
 					</div><!-- End .col-lg-9 -->
 				</div><!-- End .row -->
-                </div>
+  </div>
+</div>
+  
 </template>
 
 <script>

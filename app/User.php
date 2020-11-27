@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public $with = ['role', 'auteur'];
+    public $with = ['role'];
 
     /**
      * The attributes that are mass assignable.

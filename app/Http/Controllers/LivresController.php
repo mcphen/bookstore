@@ -24,4 +24,10 @@ class LivresController extends Controller
         }
         return $res;
     }
+
+    public function fetchLivre($id){
+        $livre = Livres::find($id);
+        
+        return $livre;
+    }
 }
