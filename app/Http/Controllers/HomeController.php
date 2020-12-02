@@ -39,4 +39,12 @@ class HomeController extends Controller
             'title'=>$title
         ]);
     }
+
+    public function boutiques(){
+        $title='Boutique ';
+        return view('frontend.boutique')->with([
+            
+            'title'=>$title
+        ]);
+    }
 }

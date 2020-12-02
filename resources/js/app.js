@@ -43,6 +43,8 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 Vue.component('VueSlickCarousel',VueSlickCarousel)
 
+
+Vue.use(require('vue-moment'));
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -64,6 +66,9 @@ import navigation from './components/Front/Navigation/Navigation'
 import banniere from './components/Front/Body/Banniere'
 import featured from './components/Front/Livres/Featured'
 import single_livre from './components/Front/Livres/Single'
+import all_livres from './components/Front/Livres/All'
+import add_news from './components/Admin/News/Add'
+import home_actu from './components/Front/Body/Actualite'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -73,6 +78,6 @@ import single_livre from './components/Front/Livres/Single'
 const app = new Vue({
     el: '#app',
     components:{
-        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured, single_livre
+        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured, single_livre,all_livres,add_news,home_actu
     }
 });

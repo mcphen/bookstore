@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@index' );
 
-Auth::routes();
-
+//Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
@@ -62,13 +62,21 @@ Route::group(['middleware' => ['admin']], function () {
        
        Route::get('/destroy_livre/{id}', 'AdminController@delete_livre');
        Route::put('/update_livre/{id}', 'AdminController@update_livre');
+
+       //=================== ROUTE NEWS ===================================//
+       Route::get('/admin/news', 'AdminController@news_list');
+       Route::get('/admin/news/add', 'AdminController@news_add');
+       Route::post('/add_news',"AdminController@add_news");
 });
 Route::get('/all_livre', 'AdminController@all_livre');
 Route::get('/all_users', 'AdminController@all_users');
 Route::get('/all_collection', 'AdminController@all_collection');
 Route::get('/all_categorie', 'AdminController@all_categorie');
 Route::get('/all_role', 'AdminController@all_role');
+Route::get('/all_news', 'NewsController@all_news');
 
 Route::get('/list_livre','LivresController@all_livre');
 Route::get('/livre/{slug}', 'HomeController@single_livre');
 Route::get('/fetchLivre/{id}','LivresController@fetchLivre');
+
+Route::get('/boutiques', 'HomeController@boutiques');

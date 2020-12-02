@@ -12,7 +12,7 @@ class LivresController extends Controller
         $i=0;
         $res = array();
 
-        $livres = Livres::all();
+        $livres = Livres::orderBy('created_at','desc')->get();
 
         foreach($livres as $l){
             $res[$i] = array(

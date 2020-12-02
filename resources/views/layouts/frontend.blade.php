@@ -33,6 +33,7 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{url('/')}}/assets/css/style.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/assets/vendor/fontawesome-free/css/all.min.css">
+    @yield('stylesheet')
 </head>
 <body>
     <div id="app">
@@ -47,9 +48,9 @@
                             <ul> 
                                 <li><a href="#">A propos</a></li>
                                 <li><a href="my-account.html">Espace auteurs</a></li>
-                                <li><a href="#">Le comité de lecture</a></li>
+                                <li><a href="#">Le comité scientifique</a></li>
                                 <li><a href="#">Actualités</a></li>
-                                <li><a href="blog.html">Boutique</a></li>
+                                <li><a href="{{ url('/boutiques') }}">Boutique</a></li>
                                 <li><a href="contact.html">Médiathèque</a></li>
                                 
                                 <!-- Authentication Links -->
@@ -71,7 +72,7 @@
                             <button class="mobile-menu-toggler" type="button">
                                 <i class="icon-menu"></i>
                             </button>
-                            <a href="index-2.html" class="logo">
+                            <a href="{{url('/')}}" class="logo">
                                 <img src="{{url('/')}}/assets/images/logo.jpg" style="width: 200px" alt="Porto Logo">
                             </a>
                             <nav class="main-nav">

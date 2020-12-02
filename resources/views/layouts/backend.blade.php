@@ -80,7 +80,7 @@
 					<a class="text-white" href="{{ route('logout') }}"
 					onclick="event.preventDefault();
 					document.getElementById('logout-form').submit();">
-					<i class="dropdown-icon zmdi zmdi-power"></i><span>Deconnexion</span>
+					<i class="dropdown-icon zmdi zmdi-power"></i><span> Deconnexion</span>
 				</a>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 					@csrf
@@ -150,14 +150,14 @@
 								<li class="nav-item">
 										<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#pages_drp">
 											<span class="feather-icon"><i data-feather="settings"></i></span>
-											<span class="nav-link-text">Parametrage</span>
+											<span class="nav-link-text">Actualités</span>
 										</a>
 										<ul id="pages_drp" class="nav flex-column collapse collapse-level-1">
 											<li class="nav-item">
 												<ul class="nav flex-column">
 											
 													<li class="nav-item">
-														<a class="nav-link" href="#">Roles</a>
+														<a class="nav-link" href="{{ url('/admin/news') }}">Actualités</a>
                                                     </li>
                                                     
 												</ul>

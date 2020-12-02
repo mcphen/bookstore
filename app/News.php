@@ -9,4 +9,8 @@ class News extends Model
     protected $fillable = [
         'titre','description','img_news','user_id','status','slug'
     ];
+
+    public function getImgNewsAttribute($pics){
+        return asset('/news/'.$pics);
+    }
 }

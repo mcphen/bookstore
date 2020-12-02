@@ -38,54 +38,21 @@
                             </div>
                         </div>
 
-					<div class="col-lg-8 mb-2">
+					<div class="col-lg-8 mb-2" v-if="news.length>0">
                         <VueSlickCarousel v-bind="settings">
-                            <div class="home-slide">
-                                <div class="slide-content flex-column flex-lg-row">
-                                    <div class="content-left mx-auto mr-lg-0 py-5">
-                                        <span>EXTRA</span>
-                                        <h2>20% OFF</h2>
-                                        <h4 class="cross-txt">BIKES</h4>
-                                        <h3 class="mb-2 mb-lg-8">Summer Sale</h3>
-                                        <button class="btn">Shop All Sale</button>
+                            <div class="home-slide" v-for="n in news" :key="n.id">
+                                <a href="#">
+                                <div class="slide-content" :style="{ backgroundImage: `url(${n.img_news})`, backgroundPosition : 'center', backgroundSize:'cover' }">
+                                    <div class="titre_ban" >
+                                        
+                                        <span class="titre_span">{{n.titre}}</span>
+                                        
                                     </div>
-                                    <div class="image-container mx-auto py-5">
-                                        <img :src="'assets/images/slider/slide2.png'" class="slide-img1" alt="slide image">
-                                        <div class="image-info mt-2 mt-lg-6 flex-column flex-sm-row">
-                                            <div class="info-left">
-                                                <h4>only <span><sup>$</sup>399<sup>99</sup></span></h4>
-                                            </div>
-                                            <div class="info-right">
-                                                <h4>Start Shopping Right Now</h4>
-                                                <p>*Get Plus Discount Buying Package</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                </a>
                             </div>
-                            <div class="home-slide">
-                                <div class="slide-content flex-column flex-lg-row">
-                                    <div class="content-left mx-auto mr-lg-0 py-5">
-                                        <span>EXTRA</span>
-                                        <h2>20% OFF</h2>
-                                        <h4 class="cross-txt">BIKES</h4>
-                                        <h3 class="mb-2 mb-lg-8">Summer Sale</h3>
-                                        <button class="btn">Shop All Sale</button>
-                                    </div>
-                                    <div class="image-container mx-auto py-5">
-                                        <img :src="'assets/images/slider/slide1.png'" class="slide-img1" alt="slide image">
-                                        <div class="image-info mt-2 mt-lg-6 flex-column flex-sm-row">
-                                            <div class="info-left">
-                                                <h4>only <span><sup>$</sup>399<sup>99</sup></span></h4>
-                                            </div>
-                                            <div class="info-right">
-                                                <h4>Start Shopping Right Now</h4>
-                                                <p>*Get Plus Discount Buying Package</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </VueSlickCarousel>
 						
 					</div><!-- End .col-lg-9 -->
@@ -111,8 +78,15 @@ export default {
                 autoplay: true,
                 
                 autoplaySpeed: 5000,
-            }
+            },
+            news: [],
         }
+    },
+
+    
+
+    created(){
+        this.all_news()
     },
 
     methods:{
@@ -122,6 +96,29 @@ export default {
 
         search_auteur(){
 
+        },
+
+        all_news(){
+           axios.get('/all_news').then(resp =>{
+                //console.log(resp.data)
+                let i = 0
+               resp.data.forEach((menu)=>{
+                    if(i<=8){
+                        if(menu.status==1 ){
+                            this.news.push(menu)
+                           //console.log(menu)
+                        }
+                    }
+                        
+                    i++;
+                })
+                    
+
+                    
+                    
+            }).catch(function(error){
+                    console.log(error)
+            }) 
         }
     }
 }
@@ -225,5 +222,14 @@ select.form-control:not([size]):not([multiple]) {
 
 .slick-prev:before, .slick-next:before{
     color : black !important;
+}
+
+.titre_ban{
+    padding: 15px;
+    background-color: #0606063b;
+    text-align: center;
+}
+.titre_span{
+    color : white !important;
 }
 </style>

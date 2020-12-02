@@ -7,9 +7,11 @@ use App\Categories;
 use App\Collections;
 use App\ImagesLivre;
 use App\Livres;
+use App\News;
 use App\Roles;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -200,7 +202,7 @@ class AdminController extends Controller
         return ['message' =>'Role supprimé'];
     }
 
-    //=============================== CRUD TABLE USERS =============================================//
+    //=============================== CRUD TABLE livre =============================================//
 
     public function livre_list(){
         $livres = Livres::all();
@@ -276,9 +278,67 @@ class AdminController extends Controller
      */
 
     public function news_list(){
-        
+        $livres = News::all();
         $title = "Liste news ";
-        return view('backend/news')->with(['title'=>$title]);
+        return view('backend/news')->with(['title'=>$title, 'livres'=>$livres]);
+    }
+
+    public function news_add(){
+        $title = "Insertion news";
+       
+
+        return view('backend/addnews')->with(['title'=>$title]);
+    }
+
+    public function add_news(Request $request){
+       // $popular = 0;
+        $publish = 0;
+        //if($request->popular==True) $popular=1;
+        if($request->publish==True) $publish=1;
+
+        $image = $request->get('images');
+
+        $exploded = explode(',', $image);
+
+       // var_dump($exploded); die();
+
+        if( Str::contains($exploded[0], 'jpg')){
+                $ext = 'jpg';
+
+        }elseif(Str::contains($exploded[0], 'jpeg')){
+            $ext = 'jpeg';
+        }elseif(Str::contains($exploded[0], 'png')){
+            $ext = 'png';
+        }elseif(Str::contains($exploded[0], 'gif')){
+            $ext = 'gif';
+        }
+
+        $decode = base64_decode($exploded[1]);
+
+        $filename = Str::random().'.'.$ext;
+
+        $path = \public_path()."/news/".$filename;
+
+        file_put_contents($path, $decode);
+
+       // var_dump($image); die();
+        
+
+       
+
+        News::create([
+            'titre'=>$request->titre,
+            'description'=>$request->description,
+            'img_news'=>$filename,
+            'user_id'=>Auth::user()->id,
+            'status'=>$publish,
+            'slug'=>Str::slug($request->titre),
+        ]);
+        
+           
+
+
+        return "ok";
     }
 
 }

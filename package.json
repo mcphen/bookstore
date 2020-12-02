@@ -28,6 +28,7 @@
         "element-ui": "^2.14.1",
         "sweetalert2": "^10.10.0",
         "vform": "^1.0.1",
+        "vue-moment": "^4.1.0",
         "vue-select": "^3.10.8",
         "vue-slick-carousel": "^1.0.6",
         "vue2-editor": "^2.10.2"

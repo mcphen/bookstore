@@ -6,37 +6,31 @@
                             <h2>ACTUALITES</h2>
                         </div>
                         <div>
-                            <div class="product-default inner-quickview inner-icon center-details">
+                            <VueSlickCarousel v-bind="settings">
+                            <div class="product-default inner-quickview inner-icon center-details" v-for="n in news" :key="n.id">
                                 <figure>
                                     <a href="product.html">
-                                        <img src="{{url('/')}}/assets/images/products/grey/product-1.jpg">
+                                        <img :src="n.img_news">
                                     </a>
-                                    <div class="btn-icon-group">
-                                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-                                    </div>
-                                    <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a> 
+                                     <a :href="'#'" class="btn-quickview" title="Quick View">Voir plus</a> 
                                 </figure>
                                 <div class="product-details">
                                     <div class="category-wrap">
                                         <div class="category-list">
-                                            <a href="category.html" class="product-category">category</a>
+                                            {{ n.created_at | moment("MM-DD-YYYY") }}
                                         </div>
                                     </div>
                                     <h2 class="product-title">
-                                        <a href="product.html">Product Short Name</a>
+                                        <a href="product.html">{{ n.titre }}</a>
                                     </h2>
-                                    <div class="ratings-container">
-                                        <div class="product-ratings">
-                                            <span class="ratings" style="width:100%"></span><!-- End .ratings -->
-                                            <span class="tooltiptext tooltip-top"></span>
-                                        </div><!-- End .product-ratings -->
-                                    </div><!-- End .product-container -->
+                                    
                                     <div class="price-box">
-                                        <span class="old-price">$59.00</span>
-                                        <span class="product-price">$49.00</span>
+                                        <span v-html="$options.filters.subStr(n.description)"></span>
+                                      
                                     </div><!-- End .price-box -->
                                 </div><!-- End .product-details -->
                             </div>
+                            </VueSlickCarousel> 
                             
                         </div>
         </section>
@@ -48,6 +42,86 @@
 
 <script>
 export default {
+  data(){
+        return{
+             settings:{
+                
+                dots: false,
+                infinite: true,
+                
+                
+                speed: 500,
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                
+                centerMode: true,
+                centerPadding: "20px",
+                //variableWidth: true,
+                responsive: [
+                    {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                    },
+                    {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        initialSlide: 2
+                    }
+                    },
+                    {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                    }
+                ]
+            }, 
+            news :[]
+        }
+    },
+
+    filters:{
+        subStr: function (string){
+            return string.substring(0,150) + '...';
+        }
+    },
+
+    created(){
+        this.all_livre();
+    },
+
+    methods:{
+        all_livre(){
+             axios.get('/all_news').then(resp =>{
+                //console.log(resp.data)
+                let i = 0
+               resp.data.forEach((menu)=>{
+                    if(i<=8){
+                        if(menu.status==1 ){
+                            this.news.push(menu)
+                           //console.log(menu)
+                        }
+                    }
+                        
+                    i++;
+                })
+                    
+
+                    
+                    
+            }).catch(function(error){
+                    console.log(error)
+            }) 
+        }
+    }
 
 }
 </script>

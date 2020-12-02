@@ -1,17 +1,17 @@
 <template>
 
     <ul v-if="mobile==0" :class="'menu'">
-        <li><a href="#">Accueil</a>   </li>
+        <li><a :href="'/'">Accueil</a>   </li>
          <li v-for="m in menus" :key="m.id">
             <a href="#">{{ m.cat }}</a>
         </li>
     </ul>
     <ul v-else :class="'mobile-menu'">
-        <li><a href="#">Accueil</a>   </li>
+        <li><a :href="'/'">Accueil</a>   </li>
         <li v-for="m in menus" :key="m.id">
             <a href="#">{{ m.cat }}</a>
         </li>
-        <li><a href="#" class="login-link">Connexion</a></li>
+        <li><a :href="'/login'" class="login-link">Connexion</a></li>
     </ul>
 </template>
 

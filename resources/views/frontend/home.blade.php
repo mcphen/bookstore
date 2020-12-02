@@ -5,6 +5,8 @@
 <banniere></banniere>
                 
 <featured></featured>
+
+<home_actu></home_actu>
                 
 
                 
