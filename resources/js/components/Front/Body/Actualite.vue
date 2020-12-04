@@ -5,7 +5,7 @@
                         <div class="section-title">
                             <h2>ACTUALITES</h2>
                         </div>
-                        <div>
+                        <div v-if="news.length>0">
                             <VueSlickCarousel v-bind="settings">
                             <div class="product-default inner-quickview inner-icon center-details" v-for="n in news" :key="n.id">
                                 <figure>

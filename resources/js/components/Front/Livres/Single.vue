@@ -46,15 +46,40 @@
 						</div>
                         
 
-                        <hr class="short-divider">
+                        
 
                         <div class="price-box">
                             
                             <span class="product-price">${{livre.price}}</span>
                         </div><!-- End .price-box -->
-                        <div class="product-desc" v-html="livre.description">
-                            
-                        </div><!-- End .product-desc -->
+
+                        <div class="product-action">
+                                    
+                                    
+                                    <a   class="paction add-cart btn_cart" @click="addToCart(livre)" title="Add to Cart">
+                                        Ajouter au panier
+                                    </a>
+                                   
+                        </div><!-- End .product-action -->
+
+                        <div class="product-single-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true">Description</a>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="product-desc-content" role="tabpanel" aria-labelledby="product-tab-desc">
+                                        <div class="product-desc-content" v-html="livre.description">
+                                        </div><!-- End .product-desc-content -->
+                                    </div><!-- End .tab-pane -->
+            
+                                </div><!-- End .tab-content -->
+                            </div><!-- End .product-single-tabs -->
+
+                        
+                        
                         
 
                         
@@ -159,6 +184,10 @@ export default {
                 })
             
         },
+
+        addToCart(livre){
+            this.$store.commit('addToCart', livre);
+        }
     },
     props:{
         idprod:{
@@ -174,7 +203,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped >
+    .product-single-details{
+        padding-left: 50px  !important;
+    }
     .image_carroussel{
         padding-left: 75px;
         padding-right: 75px;
@@ -190,5 +222,14 @@ export default {
     .carroussel_img{
         padding-left: 4px;
         padding-right: 4px;
+    }
+
+    .slick-prev:before, .slick-next:before{
+        color : black !important;
+    }
+
+    .btn_cart{
+        cursor: pointer;
+        color: white  !important;
     }
 </style>

@@ -46,7 +46,7 @@
                         </div><!-- End .header-left -->
                         <div class="header-right">
                             <ul> 
-                                <li><a href="#">A propos</a></li>
+                                <li><a href="{{ url('/about') }}">A propos</a></li>
                                 <li><a href="my-account.html">Espace auteurs</a></li>
                                 <li><a href="#">Le comité scientifique</a></li>
                                 <li><a href="#">Actualités</a></li>
@@ -84,6 +84,8 @@
                         </div>
 
                         <div class="header-right">
+
+                            <cart></cart>
                             
     
                             

@@ -47,4 +47,20 @@ class HomeController extends Controller
             'title'=>$title
         ]);
     }
+
+    public function about(){
+        $title='A Propos ';
+        return view('frontend.about')->with([
+            
+            'title'=>$title
+        ]);
+    }
+
+    public function cart(){
+        $title='Panier';
+        return view('frontend.cart')->with([
+            
+            'title'=>$title
+        ]);
+    }
 }

@@ -45,16 +45,10 @@ Vue.component('VueSlickCarousel',VueSlickCarousel)
 
 
 Vue.use(require('vue-moment'));
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+
+import {store} from './store'  //import Vuex
 
 import rolecomponent from './components/Admin/RoleComponent'
 import categoriecomponent from './components/Admin/CategorieComponent'
@@ -69,6 +63,9 @@ import single_livre from './components/Front/Livres/Single'
 import all_livres from './components/Front/Livres/All'
 import add_news from './components/Admin/News/Add'
 import home_actu from './components/Front/Body/Actualite'
+
+import cart from './components/Front/Body/Cart'
+import panier from './components/Front/Body/Panier'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -77,7 +74,9 @@ import home_actu from './components/Front/Body/Actualite'
 
 const app = new Vue({
     el: '#app',
+
+    store:store,
     components:{
-        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured, single_livre,all_livres,add_news,home_actu
+        rolecomponent,categoriecomponent, collection, users,action_button,add_livre,navigation,banniere,featured, single_livre,all_livres,add_news,home_actu, cart, panier
     }
 });

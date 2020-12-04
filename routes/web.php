@@ -80,3 +80,6 @@ Route::get('/livre/{slug}', 'HomeController@single_livre');
 Route::get('/fetchLivre/{id}','LivresController@fetchLivre');
 
 Route::get('/boutiques', 'HomeController@boutiques');
+Route::get('/about', 'HomeController@about');
+
+Route::get('/cart','HomeController@cart');

@@ -15,9 +15,9 @@
                                     </a>
                                     
                                     <div class="btn-icon-group">
-                                        <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
+                                        <button class="btn-icon btn-add-cart" @click="addToCart(livre.livre)"><i class="icon-bag"></i></button>
                                     </div>
-                                   <a :href="'livre/'+livre.livre.slug" class="btn-quickview" title="Quick View">Voir plus</a> 
+                                  
                                 </figure>
                                 <div class="product-details">
                                     
@@ -113,6 +113,10 @@ export default {
             }).catch(function(error){
                     console.log(error)
             })
+        },
+
+        addToCart(livre){
+            this.$store.commit('addToCart', livre);
         }
     }
 }
