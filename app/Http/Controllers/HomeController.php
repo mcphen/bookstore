@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Livres;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -62,5 +63,18 @@ class HomeController extends Controller
             
             'title'=>$title
         ]);
+    }
+
+    public function identification(){
+        if(Auth::user()){
+            return redirect('/');
+        }else{
+            $title='Identification';
+            return view('frontend.identification')->with([
+                
+                'title'=>$title
+            ]);
+        }
+        
     }
 }

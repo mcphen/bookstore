@@ -19,6 +19,10 @@ Route::get('/','HomeController@index' );
 //Auth::routes();
 Auth::routes(['register' => false]);
 
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/testLogout','UserController@logout');
+});
+
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
 
@@ -83,3 +87,9 @@ Route::get('/boutiques', 'HomeController@boutiques');
 Route::get('/about', 'HomeController@about');
 
 Route::get('/cart','HomeController@cart');
+Route::get('/identification','HomeController@identification');
+
+Route::post('/auth','UserController@authenticate');
+Route::post('/addToPanier','LivresController@addToPanier');
+
+

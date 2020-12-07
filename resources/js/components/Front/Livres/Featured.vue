@@ -136,6 +136,8 @@ export default {
     margin: auto;
 }
 
+
+
 .slick-prev:before, .slick-next:before{
     color : black !important;
 }

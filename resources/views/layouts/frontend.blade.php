@@ -93,25 +93,13 @@
                             <div class="dropdown cart-dropdown">
                                 <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     <i class="icon-user-2" style="font-size: 2.7rem"></i>
-                                    <span>{{ Auth::user()->name }}</span>
+                                    
                                     
                                 </a>
     
                                 <div class="dropdown-menu" >
                                     <div class="dropdownmenu-wrapper">
-                                        <div class="dropdown-cart-header">
-                                            
-    
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                          document.getElementById('logout-form').submit();">
-                                             {{ __('Logout') }}
-                                         </a>
-     
-                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                             @csrf
-                                         </form>
-                                        </div><!-- End .dropdown-cart-header -->
+                                        <logoutcomponent></logoutcomponent>
                                         
                                     </div><!-- End .dropdownmenu-wrapper -->
                                 </div><!-- End .dropdown-menu -->

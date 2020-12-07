@@ -44,6 +44,12 @@ export const store = new Vuex.Store({
         saveCart(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
             window.localStorage.setItem('cartCount', state.cartCount);
+        },
+        
+        deleteCart(state){
+            state.cartCount = 0;
+            state.cart=[];
+
         }
     }
 })
